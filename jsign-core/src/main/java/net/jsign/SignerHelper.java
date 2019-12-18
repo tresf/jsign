@@ -350,11 +350,11 @@ class SignerHelper {
                 .withDigestAlgorithm(DigestAlgorithm.of(alg))
                 .withSignatureProvider(provider)
                 .withSignaturesReplaced(replace)
-                .withTimestamping(tsaurl != null || tsmode != null)
+                .withTimestamping((tsaurl != null && !tsaurl.isEmpty()) || tsmode != null)
                 .withTimestampingMode(tsmode != null ? TimestampingMode.of(tsmode) : TimestampingMode.AUTHENTICODE)
                 .withTimestampingRetries(tsretries)
                 .withTimestampingRetryWait(tsretrywait)
-                .withTimestampingAuthority(tsaurl != null ? tsaurl.split(",") : null);
+                .withTimestampingAuthority((tsaurl != null && !tsaurl.isEmpty()) ? tsaurl.split(",") : null);
     }
 
     /**
